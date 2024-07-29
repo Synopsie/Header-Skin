@@ -3,11 +3,20 @@ declare(strict_types=1);
 
 namespace skin;
 
+use Exception;
+use pocketmine\entity\Entity;
+use pocketmine\entity\EntityDataHelper;
+use pocketmine\entity\EntityFactory;
+use pocketmine\entity\Human;
+use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\permission\DefaultPermissions;
 use pocketmine\permission\Permission;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\SingletonTrait;
+use pocketmine\world\World;
 use skin\command\GiveHeadCommand;
+use skin\entity\HeadEntity;
+use skin\listener\BlockPlaceListener;
 use skin\listener\PlayerJoinListener;
 
 class Main extends PluginBase {
@@ -37,12 +46,19 @@ class Main extends PluginBase {
         };
     }
 
+    /**
+     * @throws Exception
+     */
     protected function onEnable() : void {
 
         $config = $this->getConfig();
 
         $permission = new Permission($config->getNested('permission.name', 'givehead.use'));
         DefaultPermissions::registerPermission($permission, [$this->type($config->getNested('permission.default', 'everyone'))]);
+
+        EntityFactory::getInstance()->register(HeadEntity::class, function (World $world, CompoundTag $nbt): Entity {
+            return new HeadEntity(EntityDataHelper::parseLocation($nbt, $world), Human::parseSkinNBT($nbt), $nbt);
+        }, ['Head', 'HeadEntity', 'PlayerHead']);
 
         $this->getServer()->getCommandMap()->register('Header-Skin', new GiveHeadCommand(
             $config->getNested('command.name','givehead'),
@@ -53,6 +69,7 @@ class Main extends PluginBase {
         ));
 
         $this->getServer()->getPluginManager()->registerEvents(new PlayerJoinListener(), $this);
+        $this->getServer()->getPluginManager()->registerEvents(new BlockPlaceListener(), $this);
 
         $this->getLogger()->info("§aHeader-Skin plugin activé avec succès !");
     }
