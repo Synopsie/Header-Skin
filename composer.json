@@ -5,7 +5,8 @@
     "require": {
         "php": "^8.1",
         "synopsie/iriss-command": "^1.0",
-        "ext-gd": "*"
+        "ext-gd": "*",
+        "ext-exif": "*"
     },
     "require-dev": {
         "pocketmine/pocketmine-mp": "^5.17",
