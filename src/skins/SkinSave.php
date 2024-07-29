@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace arkania;
+namespace skin\skins;
 
 class SkinSave {
 
@@ -53,6 +53,23 @@ class SkinSave {
         }
         imagesavealpha($image, true);
         return $image;
+    }
+
+    public static function imageToSkinData($img) : string {
+        $width = imagesx($img);
+        $height = imagesy($img);
+        $skinData = "";
+        for ($y = 0; $y < $height; $y++) {
+            for ($x = 0; $x < $width; $x++) {
+                $rgba = imagecolorat($img, $x, $y);
+                $r = ($rgba >> 16) & 0xff;
+                $g = ($rgba >> 8) & 0xff;
+                $b = $rgba & 0xff;
+                $a = 127 - (($rgba >> 24) & 0x7f) * 2;
+                $skinData .= chr($r) . chr($g) . chr($b) . chr($a);
+            }
+        }
+        return $skinData;
     }
 
     public static function resize_image($file, $w, $h, $crop = true, $src_x = 0, $src_y = 0, $src_w = null, $src_h = null) {
