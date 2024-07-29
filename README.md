@@ -1,4 +1,4 @@
-# Arkania SkinSave Library
+# SkinSave Library
 
 La bibliothèque `SkinSave` est une solution PHP conçue pour faciliter la manipulation et la sauvegarde des skins de personnages pour Minecraft. Elle permet de valider, redimensionner et sauvegarder les données de skin sous forme d'images.
 
@@ -8,6 +8,7 @@ La bibliothèque `SkinSave` est une solution PHP conçue pour faciliter la manip
 - Conversion des données de skin en images.
 - Redimensionnement des images de skin.
 - Sauvegarde des têtes de personnages à partir des données de skin.
+- Obtenir en jeu la tête du joeuur 
 
 ## Installation
 
@@ -20,7 +21,7 @@ Vous mettez le fichier `SkinSave.php` dans votre projet et pensez à changer le 
 Pour valider la taille d'un skin, utilisez la méthode `validateSize` :
 
 ```php
-$isValid = \arkania\SkinSave::validateSize($size);
+$isValid = \skin\skins\SkinSave::validateSize($size);
 ```
 
 ### Enregistrer un skin en config.
@@ -28,7 +29,7 @@ $isValid = \arkania\SkinSave::validateSize($size);
 Pour enregistrer un skin en config, utilisez la méthode `skinDataToImage` :
 
 ```php
-$image = \arkania\SkinSave::skinDataToImage($skinData);
+$image = \skin\skins\SkinSave::skinDataToImage($skinData);
 ```
 
 ### Redimensionner une image de skin
@@ -44,7 +45,7 @@ imagepng(SkinSave::skinDataToImage($player->getSkin()->getSkinData()), Main::get
 Pour sauvegarder la tête d'un personnage à partir des données de skin, utilisez la méthode `savePlayerHead` :
 
 ```php
-\arkania\SkinSave::savePlayerHead($playerName, $skinData, $path);
+\skin\skins\SkinSave::savePlayerHead($playerName, $skinData, $path);
 ```
 
 ## Contribution
