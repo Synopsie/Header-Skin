@@ -1,0 +1,26 @@
+{
+    "name": "synopsie/header-skin",
+    "description": "Allow save and get player skin and head, and if you want you can have player head block",
+    "type": "project",
+    "require": {
+        "php": "^8.1",
+        "synopsie/iriss-command": "^1.0"
+    },
+    "require-dev": {
+        "pocketmine/pocketmine-mp": "^5.17",
+        "friendsofphp/php-cs-fixer": "^3.60"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Synopsie\\HeaderSkin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dumont-Julien",
+            "email": "dumontj357@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
