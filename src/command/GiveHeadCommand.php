@@ -41,7 +41,7 @@ class GiveHeadCommand extends Command {
         if(!isset($parameters[1])) {
             $amount = 1;
         }else{
-            $amount = $parameters[1];
+            $amount = (int)$parameters[1];
         }
 
         if(($online = Server::getInstance()->getPlayerExact($player)) instanceof Player) {

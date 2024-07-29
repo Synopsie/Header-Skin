@@ -6,15 +6,19 @@ namespace skin\utils;
 use JsonException;
 use pocketmine\block\utils\MobHeadType;
 use pocketmine\block\VanillaBlocks;
+use pocketmine\entity\Location;
 use pocketmine\entity\Skin;
 use pocketmine\item\Item;
+use pocketmine\math\Vector3;
 use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\world\Position;
+use skin\entity\HeadEntity;
 use skin\Main;
 
 class Utils {
 
-    public static function getHeadItem($skin, $name = null, $count = 1): Item {
-        $skin = $skin instanceof Skin ? self::skinToTag($skin) : $skin;
+    public static function getHeadItem(Skin $skin, $name = null, $count = 1): Item {
+        $skin = self::skinToTag($skin);
         $item = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PLAYER())->asItem();
         $tag = $item->getCustomBlockData() ?? new CompoundTag();
         $tag->setTag('skin', $skin);
@@ -39,4 +43,28 @@ class Utils {
         );
     }
 
+    public static function getYaw(Vector3 $pos, Vector3 $target): float {
+        $yaw = atan2($target->z - $pos->z, $target->x - $pos->x) / M_PI * 180 - 90;
+        if ($yaw < 0) {
+            $yaw += 360.0;
+        }
+        foreach ([45, 90, 135, 180, 225, 270, 315, 360] as $direction) {
+            if ($yaw <= $direction) {
+                return $direction;
+            }
+        }
+        return $yaw;
+    }
+
+    /**
+     * @throws JsonException
+     */
+    public static function spawnHead($skin, $name, Position $pos, $yaw = null, $pitch = null): HeadEntity {
+        if ($skin instanceof CompoundTag) $skin = self::tagToSkin($skin);
+        $nbt = new CompoundTag();
+        $nbt->setString('player', $name);
+        $head = new HeadEntity(Location::fromObject($pos->add(0.5, 0, 0.5), $pos->getWorld(), $yaw ?? 0, $pitch ?? 0), $skin, $nbt);
+        $head->spawnToAll();
+        return $head;
+    }
 }
