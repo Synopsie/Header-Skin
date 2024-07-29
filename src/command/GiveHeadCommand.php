@@ -1,4 +1,22 @@
 <?php
+
+/*
+ *  ____   __   __  _   _    ___    ____    ____    ___   _____
+ * / ___|  \ \ / / | \ | |  / _ \  |  _ \  / ___|  |_ _| | ____|
+ * \___ \   \ V /  |  \| | | | | | | |_) | \___ \   | |  |  _|
+ *  ___) |   | |   | |\  | | |_| | |  __/   ___) |  | |  | |___
+ * |____/    |_|   |_| \_|  \___/  |_|     |____/  |___| |_____|
+ *
+ * Ce système permet de sauvegarder et d'obtenir l'apparence et la tête du joueur.
+ *  En outre, si vous le souhaitez, vous pouvez également obtenir un bloc représentant la tête du joueur.
+ *   Cela offre plus de personnalisation et d'options pour afficher les skins et les têtes dans le jeu.
+ *
+ * @author SynopsieTeam
+ * @link https://github.com/Synopsie
+ * @version 2.0.1
+ *
+ */
+
 declare(strict_types=1);
 
 namespace skin\command;
@@ -7,7 +25,6 @@ use iriss\CommandBase;
 use iriss\parameters\IntParameter;
 use iriss\parameters\StringParameter;
 use JsonException;
-use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\lang\Translatable;
 use pocketmine\player\Player;
@@ -15,52 +32,52 @@ use pocketmine\Server;
 use skin\Main;
 use skin\skins\SkinSave;
 use skin\utils\Utils;
+use function file_exists;
 
 class GiveHeadCommand extends CommandBase {
+	public function __construct(string $name, string|Translatable $description, string $usageMessage, array $subCommands = [], array $aliases = []) {
+		parent::__construct($name, $description, $usageMessage, $subCommands, $aliases);
+		$this->setPermission(Main::getInstance()->getConfig()->getNested('permission.name', 'givehead.use'));
+	}
 
-    public function __construct(string $name, Translatable|string $description, string $usageMessage, array $subCommands = [], array $aliases = []) {
-        parent::__construct($name, $description, $usageMessage, $subCommands, $aliases);
-        $this->setPermission(Main::getInstance()->getConfig()->getNested('permission.name', 'givehead.use'));
-    }
+	public function getCommandParameters() : array {
+		return [
+			new StringParameter('player'),
+			new IntParameter('amount', isOptional: true)
+		];
+	}
 
-    public function getCommandParameters() : array {
-        return [
-            new StringParameter('player'),
-            new IntParameter('amount', isOptional: true)
-        ];
-    }
+	/**
+	 * @throws JsonException
+	 */
+	public function onRun(CommandSender $sender, array $parameters) : void {
+		$config = Main::getInstance()->getConfig();
+		if(!$sender instanceof Player) {
+			$sender->sendMessage($config->get('use.command.in.game'));
+			return;
+		}
 
-    /**
-     * @throws JsonException
-     */
-    public function onRun(CommandSender $sender, array $parameters) : void {
-        $config = Main::getInstance()->getConfig();
-        if(!$sender instanceof Player) {
-            $sender->sendMessage($config->get('use.command.in.game'));
-            return;
-        }
+		$player = $parameters['player'];
+		if(!file_exists(Main::getInstance()->getDataFolder() . "skins/" . $player . '.png')) {
+			$sender->sendMessage($config->get('player.skin.not.found'));
+			return;
+		}
+		if(!isset($parameters['amount'])) {
+			$amount = 1;
+		} else {
+			$amount = (int) $parameters['amount'];
+		}
 
-        $player = $parameters['player'];
-        if(!file_exists(Main::getInstance()->getDataFolder() . "skins/" . $player . '.png')) {
-            $sender->sendMessage($config->get('player.skin.not.found'));
-            return;
-        }
-        if(!isset($parameters['amount'])) {
-            $amount = 1;
-        }else{
-            $amount = (int)$parameters['amount'];
-        }
-
-        if(($online = Server::getInstance()->getPlayerExact($player)) instanceof Player) {
-            $skin = $online->getSkin();
-        }else{
-            $skin = SkinSave::getSkin($player);
-        }
-        $item = Utils::getHeadItem($skin, $player, $amount);
-        if($sender->getInventory()->canAddItem($item)) {
-            $sender->getInventory()->addItem($item);
-        }else{
-            $sender->sendMessage($config->get('inventory.full'));
-        }
-    }
+		if(($online = Server::getInstance()->getPlayerExact($player)) instanceof Player) {
+			$skin = $online->getSkin();
+		} else {
+			$skin = SkinSave::getSkin($player);
+		}
+		$item = Utils::getHeadItem($skin, $player, $amount);
+		if($sender->getInventory()->canAddItem($item)) {
+			$sender->getInventory()->addItem($item);
+		} else {
+			$sender->sendMessage($config->get('inventory.full'));
+		}
+	}
 }
