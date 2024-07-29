@@ -4,7 +4,8 @@
     "type": "project",
     "require": {
         "php": "^8.1",
-        "synopsie/iriss-command": "^1.0"
+        "synopsie/iriss-command": "^1.0",
+        "ext-gd": "*"
     },
     "require-dev": {
         "pocketmine/pocketmine-mp": "^5.17",
