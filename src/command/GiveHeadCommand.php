@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace skin\command;
 
+use iriss\CommandBase;
 use iriss\parameters\IntParameter;
 use iriss\parameters\StringParameter;
 use JsonException;
@@ -15,32 +16,39 @@ use skin\Main;
 use skin\skins\SkinSave;
 use skin\utils\Utils;
 
-class GiveHeadCommand extends Command {
+class GiveHeadCommand extends CommandBase {
 
     public function __construct(string $name, Translatable|string $description, string $usageMessage, array $subCommands = [], array $aliases = []) {
         parent::__construct($name, $description, $usageMessage, $subCommands, $aliases);
         $this->setPermission(Main::getInstance()->getConfig()->getNested('permission.name', 'givehead.use'));
     }
 
+    public function getCommandParameters() : array {
+        return [
+            new StringParameter('player'),
+            new IntParameter('amount', isOptional: true)
+        ];
+    }
+
     /**
      * @throws JsonException
      */
-    public function execute(CommandSender $sender, string $commandLabel, array $parameters) : void {
+    public function onRun(CommandSender $sender, array $parameters) : void {
         $config = Main::getInstance()->getConfig();
         if(!$sender instanceof Player) {
             $sender->sendMessage($config->get('use.command.in.game'));
             return;
         }
 
-        $player = $parameters[0];
+        $player = $parameters['player'];
         if(!file_exists(Main::getInstance()->getDataFolder() . "skins/" . $player . '.png')) {
             $sender->sendMessage($config->get('player.skin.not.found'));
             return;
         }
-        if(!isset($parameters[1])) {
+        if(!isset($parameters['amount'])) {
             $amount = 1;
         }else{
-            $amount = (int)$parameters[1];
+            $amount = (int)$parameters['amount'];
         }
 
         if(($online = Server::getInstance()->getPlayerExact($player)) instanceof Player) {
