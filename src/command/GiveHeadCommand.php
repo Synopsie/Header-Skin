@@ -33,8 +33,7 @@ class GiveHeadCommand extends Command {
         }
 
         $player = $parameters[0];
-        $path = Main::getInstance()->getDataFolder() . "skins/" . $player . '.png';
-        if(!file_exists($path)) {
+        if(!file_exists(Main::getInstance()->getDataFolder() . "skins/" . $player . '.png')) {
             $sender->sendMessage($config->get('player.skin.not.found'));
             return;
         }
@@ -47,7 +46,7 @@ class GiveHeadCommand extends Command {
         if(($online = Server::getInstance()->getPlayerExact($player)) instanceof Player) {
             $skin = $online->getSkin();
         }else{
-            $skin = SkinSave::getSkin($path);
+            $skin = SkinSave::getSkin($player);
         }
         $item = Utils::getHeadItem($skin, $player, $amount);
         if($sender->getInventory()->canAddItem($item)) {

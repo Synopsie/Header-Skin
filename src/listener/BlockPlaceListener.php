@@ -23,7 +23,7 @@ class BlockPlaceListener implements Listener {
                 ($event->getPlayer()->getInventory()->getItemInHand()->getCustomBlockData() ?? new CompoundTag())
                     ->getCompoundTag('skin'),
                 ($event->getPlayer()->getInventory()->getItemInHand()->getCustomBlockData() ?? new CompoundTag())
-                    ->getString('Player', ($event->getPlayer()->getInventory()->getItemInHand()->getCustomBlockData() ?? new CompoundTag())
+                    ->getString('player', ($event->getPlayer()->getInventory()->getItemInHand()->getCustomBlockData() ?? new CompoundTag())
                         ->getCompoundTag('skin')->getString('name')),
                 $block->getPosition(), Utils::getYaw($block->getPosition(),
                     $event->getPlayer()->getPosition())

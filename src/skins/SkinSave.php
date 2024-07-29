@@ -3,6 +3,11 @@ declare(strict_types=1);
 
 namespace skin\skins;
 
+use JsonException;
+use pocketmine\entity\Skin;
+use pocketmine\Server;
+use RuntimeException;
+
 class SkinSave {
 
     public static array $acceptedSkinSize = [
@@ -55,23 +60,6 @@ class SkinSave {
         return $image;
     }
 
-    public static function imageToSkinData($img) : string {
-        $width = imagesx($img);
-        $height = imagesy($img);
-        $skinData = "";
-        for ($y = 0; $y < $height; $y++) {
-            for ($x = 0; $x < $width; $x++) {
-                $rgba = imagecolorat($img, $x, $y);
-                $r = ($rgba >> 16) & 0xff;
-                $g = ($rgba >> 8) & 0xff;
-                $b = $rgba & 0xff;
-                $a = 127 - (($rgba >> 24) & 0x7f) * 2;
-                $skinData .= chr($r) . chr($g) . chr($b) . chr($a);
-            }
-        }
-        return $skinData;
-    }
-
     public static function resize_image($file, $w, $h, $crop = true, $src_x = 0, $src_y = 0, $src_w = null, $src_h = null) {
         [$width, $height] = getimagesize($file);
         $src = imagecreatefrompng($file);
@@ -103,5 +91,23 @@ class SkinSave {
         imagepng($headImage, $headFilePath);
         imagedestroy($headImage);
         unlink($tempFilePath);
+    }
+
+    /**
+     * @throws JsonException
+     */
+    public static function getSkin(string $name) : Skin {
+        $data = Server::getInstance()->getOfflinePlayerData($name);
+        if ($data === null) {
+            throw new RuntimeException("Player data not found");
+        }
+        $data = $data->getTag('Skin')->getValue();
+        return new Skin(
+            $data['Name']->getValue(),
+            $data['Data']->getValue(),
+            $data['CapeData']?->getValue() ?? "",
+            $data['GeometryName']?->getValue() ?? "",
+            $data['GeometryData']?->getValue() ?? ""
+        );
     }
 }

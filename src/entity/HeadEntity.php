@@ -8,6 +8,7 @@ use pocketmine\block\utils\MobHeadType;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\entity\EntitySizeInfo;
 use pocketmine\entity\Human;
+use pocketmine\entity\Location;
 use pocketmine\entity\Skin;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
@@ -21,6 +22,10 @@ class HeadEntity extends Human {
     const HEAD_GEOMETRY = '{"format_version": "1.12.0", "minecraft:geometry": [{"description": {"identifier": "geometry.player_head", "texture_width": 64, "texture_height": 64, "visible_bounds_width": 2, "visible_bounds_height": 4, "visible_bounds_offset": [0, 0, 0]}, "bones": [{"name": "Head", "pivot": [0, 24, 0], "cubes": [{"origin": [-4, 0, -4], "size": [8, 8, 8], "uv": [0, 0]}, {"origin": [-4, 0, -4], "size": [8, 8, 8], "inflate": 0.5, "uv": [32, 0]}]}]}]}';
 
     private string $player;
+
+    public function __construct(Location $location, Skin $skin, ?CompoundTag $nbt = null) {
+        parent::__construct($location, $skin, $nbt);
+    }
 
     /**
      * @throws JsonException
@@ -71,5 +76,4 @@ class HeadEntity extends Human {
         $nbt->setString('player', $this->player);
         return $nbt;
     }
-
 }
