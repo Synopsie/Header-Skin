@@ -1,0 +1,17 @@
+# Header-Skin Config
+
+command:
+  name: givehead
+  description: Permet de vous donner la tête d'un joueur
+  usage: /givehead <player> [count]
+  alias:
+    - giveh
+  permission:
+    name: givehead.use
+    default: op # console -> seulement console | op -> seulement les op | user -> tous le monde
+
+head.name: Tête de §e%player%
+
+use.command.in.game: Utilisez cette commande en jeu
+player.skin.not.found: §cLe skin du joueur n'a pas été trouvé, vérifiez qu'il a bien été enregistré.
+inventory.full: §cVotre inventaire est plein.
