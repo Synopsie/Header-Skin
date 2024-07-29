@@ -54,3 +54,5 @@ Les contributions à la bibliothèque sont les bienvenues. Veuillez suivre les c
 ## Licence
 
 Cette bibliothèque est distribuée sous la licence MIT. Voir le fichier `LICENSE` pour plus d'informations.
+
+![Header-Skin](header-skin.png)
