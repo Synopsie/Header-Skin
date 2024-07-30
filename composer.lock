@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "63c5a35839b744eed9083cd980b5f5ad",
+    "content-hash": "de0e95f2310c0b608b8279920867d0f8",
     "packages": [
         {
             "name": "synopsie/iriss-command",
@@ -56,6 +56,50 @@
                 "source": "https://github.com/Synopsie/Iriss-Command/tree/v1.1.0"
             },
             "time": "2024-07-30T14:27:45+00:00"
+        },
+        {
+            "name": "synopsie/olymp-permission",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Synopsie/Olymp-Permisison.git",
+                "reference": "8b04eb9d453557871602a17410a3ba20ead92274"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Synopsie/Olymp-Permisison/zipball/8b04eb9d453557871602a17410a3ba20ead92274",
+                "reference": "8b04eb9d453557871602a17410a3ba20ead92274",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.60",
+                "pocketmine/pocketmine-mp": "^5.17"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "olymp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dumont-Julien",
+                    "email": "dumontj357@gmail.com"
+                }
+            ],
+            "description": "API allowing to save permissions in a simplified way, without going through the plugin.yml or registering classes.",
+            "support": {
+                "issues": "https://github.com/Synopsie/Olymp-Permisison/issues",
+                "source": "https://github.com/Synopsie/Olymp-Permisison/tree/v1.0.0"
+            },
+            "time": "2024-07-30T19:52:17+00:00"
         }
     ],
     "packages-dev": [
