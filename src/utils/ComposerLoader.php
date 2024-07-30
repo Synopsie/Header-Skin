@@ -13,12 +13,15 @@ class ComposerLoader {
     }
 
     public static function loadRepositoryAndDependencies(string $repoPath) : void {
-        $composerJsonPath = $repoPath . '/composer.json';
+        $isPhar = substr($repoPath, -5) === '.phar';
+        $basePath = $isPhar ? 'phar://' . $repoPath : $repoPath;
+
+        $composerJsonPath = $basePath . '/composer.json';
         if (!file_exists($composerJsonPath)) {
             throw new \RuntimeException("composer.json not found at " . $composerJsonPath);
         }
 
-        $vendorDir = $repoPath . '/vendor';
+        $vendorDir = $basePath . '/vendor';
         if (!file_exists($vendorDir . '/autoload.php')) {
             throw new \RuntimeException("Composer autoload.php not found in " . $vendorDir);
         }
@@ -28,5 +31,8 @@ class ComposerLoader {
         $classLoader->addPath('', $vendorDir);
 
         require $vendorDir . '/autoload.php';
+    }
+
+    private static function loadRespositoryPhar(string $repoPath) : void {
     }
 }

@@ -75,8 +75,9 @@ class Main extends PluginBase {
 	protected function onEnable() : void {
 		$config = $this->getConfig();
 
-        ComposerLoader::init($this->getFile(), $this->getServer()->getLoader());
-        ComposerLoader::loadRepositoryAndDependencies($this->getFile());
+        /*ComposerLoader::init($this->getFile(), $this->getServer()->getLoader());
+        ComposerLoader::loadRepositoryAndDependencies($this->getFile());*/
+        require $this->getFile() . 'vendor/autoload.php';
 
 		$permission = new Permission($config->getNested('permission.name', 'givehead.use'));
 		DefaultPermissions::registerPermission($permission, [$this->type($config->getNested('permission.default', 'everyone'))]);
