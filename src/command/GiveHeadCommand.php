@@ -8,10 +8,10 @@
  * |____/    |_|   |_| \_|  \___/  |_|     |____/  |___| |_____|
  *
  * Ce système permet de sauvegarder et d'obtenir l'apparence et la tête du joueur.
- *  En outre, si vous le souhaitez, vous pouvez également obtenir un bloc représentant la tête du joueur.
- *   Cela offre plus de personnalisation et d'options pour afficher les skins et les têtes dans le jeu.
+ * En outre, si vous le souhaitez, vous pouvez également obtenir un bloc représentant la tête du joueur.
+ * Cela offre plus de personnalisation et d'options pour afficher les skins et les têtes dans le jeu.
  *
- * @author SynopsieTeam
+ * @author Synopsie
  * @link https://github.com/Synopsie
  * @version 2.0.1
  *
@@ -38,13 +38,13 @@ use function file_exists;
 class GiveHeadCommand extends CommandBase {
 	public function __construct(string $name, string|Translatable $description, string $usageMessage, array $subCommands = [], array $aliases = []) {
 		parent::__construct($name, $description, $usageMessage, $subCommands, $aliases);
-		$this->setPermission(Main::getInstance()->getConfig()->getNested('permission.name', 'givehead.use'));
+		$this->setPermission(Main::getInstance()->getConfig()->getNested('command.permission.name', 'givehead.use'));
 	}
 
 	public function getCommandParameters() : array {
 		return [
 			new StringParameter('player'),
-            new PlayerParameter('target', true),
+			new PlayerParameter('target', true),
 			new IntParameter('amount', isOptional: true)
 		];
 	}
@@ -75,20 +75,20 @@ class GiveHeadCommand extends CommandBase {
 		} else {
 			$skin = SkinSave::getSkin($player);
 		}
-		$item = Utils::getHeadItem($skin, $player, $amount);
-        $target = $sender;
-        if(isset($parameters['target'])) {
-           $target = Server::getInstance()->getPlayerExact($parameters['target']);
-        }
-        if($target === null) {
-            $sender->sendMessage($config->get('player.not.found'));
-            return;
-        }
+		$item   = Utils::getHeadItem($skin, $player, $amount);
+		$target = $sender;
+		if(isset($parameters['target'])) {
+			$target = Server::getInstance()->getPlayerExact($parameters['target']);
+		}
+		if($target === null) {
+			$sender->sendMessage($config->get('player.not.found'));
+			return;
+		}
 		if($target->getInventory()->canAddItem($item)) {
 			$target->getInventory()->addItem($item);
 		} else {
 			$target->sendMessage($config->get('inventory.full'));
-            $sender->sendMessage($config->get('inventory.full'));
+			$sender->sendMessage($config->get('inventory.full'));
 		}
 	}
 }

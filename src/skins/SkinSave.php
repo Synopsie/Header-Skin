@@ -8,10 +8,10 @@
  * |____/    |_|   |_| \_|  \___/  |_|     |____/  |___| |_____|
  *
  * Ce système permet de sauvegarder et d'obtenir l'apparence et la tête du joueur.
- *  En outre, si vous le souhaitez, vous pouvez également obtenir un bloc représentant la tête du joueur.
- *   Cela offre plus de personnalisation et d'options pour afficher les skins et les têtes dans le jeu.
+ * En outre, si vous le souhaitez, vous pouvez également obtenir un bloc représentant la tête du joueur.
+ * Cela offre plus de personnalisation et d'options pour afficher les skins et les têtes dans le jeu.
  *
- * @author SynopsieTeam
+ * @author Synopsie
  * @link https://github.com/Synopsie
  * @version 2.0.1
  *
