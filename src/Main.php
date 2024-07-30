@@ -13,7 +13,7 @@
  *
  * @author Synopsie
  * @link https://github.com/Synopsie
- * @version 2.0.1
+ * @version 2.0.2
  *
  */
 
@@ -40,7 +40,6 @@ use skin\listener\PlayerJoinListener;
 
 use function file_exists;
 use function mkdir;
-use function var_dump;
 
 class Main extends PluginBase {
 	use SingletonTrait;

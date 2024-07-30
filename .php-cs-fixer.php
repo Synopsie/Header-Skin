@@ -133,7 +133,7 @@ Cela offre plus de personnalisation et d'options pour afficher les skins et les 
 
 @author Synopsie
 @link https://github.com/Synopsie
-@version 2.0.1
+@version 2.0.2
 
 BODY,
             'location' => 'after_open'
