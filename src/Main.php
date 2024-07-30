@@ -30,6 +30,8 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\permission\DefaultPermissions;
 use pocketmine\permission\Permission;
 use pocketmine\plugin\PluginBase;
+use pocketmine\thread\ThreadManager;
+use pocketmine\thread\ThreadSafeClassLoader;
 use pocketmine\utils\SingletonTrait;
 use pocketmine\world\World;
 use skin\command\GiveHeadCommand;
@@ -72,6 +74,14 @@ class Main extends PluginBase {
 	protected function onEnable() : void {
 
 		$config = $this->getConfig();
+
+        $classLoader = new ThreadSafeClassLoader();
+        $classLoader->addPath('', 'vendor/synopsie/iriss-command/');
+        foreach (ThreadManager::getInstance()->getAll() as $thread) {
+            $thread->setClassLoaders([
+                $classLoader
+            ]);
+        }
 
 		$permission = new Permission($config->getNested('permission.name', 'givehead.use'));
 		DefaultPermissions::registerPermission($permission, [$this->type($config->getNested('permission.default', 'everyone'))]);
