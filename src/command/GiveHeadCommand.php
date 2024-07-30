@@ -23,6 +23,7 @@ namespace skin\command;
 
 use iriss\CommandBase;
 use iriss\parameters\IntParameter;
+use iriss\parameters\PlayerParameter;
 use iriss\parameters\StringParameter;
 use JsonException;
 use pocketmine\command\CommandSender;
@@ -43,6 +44,7 @@ class GiveHeadCommand extends CommandBase {
 	public function getCommandParameters() : array {
 		return [
 			new StringParameter('player'),
+            new PlayerParameter('target', true),
 			new IntParameter('amount', isOptional: true)
 		];
 	}
@@ -74,10 +76,19 @@ class GiveHeadCommand extends CommandBase {
 			$skin = SkinSave::getSkin($player);
 		}
 		$item = Utils::getHeadItem($skin, $player, $amount);
-		if($sender->getInventory()->canAddItem($item)) {
-			$sender->getInventory()->addItem($item);
+        $target = $sender;
+        if(isset($parameters['target'])) {
+           $target = Server::getInstance()->getPlayerExact($parameters['target']);
+        }
+        if($target === null) {
+            $sender->sendMessage($config->get('player.not.found'));
+            return;
+        }
+		if($target->getInventory()->canAddItem($item)) {
+			$target->getInventory()->addItem($item);
 		} else {
-			$sender->sendMessage($config->get('inventory.full'));
+			$target->sendMessage($config->get('inventory.full'));
+            $sender->sendMessage($config->get('inventory.full'));
 		}
 	}
 }

@@ -3,7 +3,7 @@
 command:
   name: givehead
   description: Permet de vous donner la tête d'un joueur
-  usage: /givehead <player> [count]
+  usage: /givehead <player> [target] [count]
   alias:
     - giveh
   permission:
