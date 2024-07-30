@@ -22,6 +22,7 @@ declare(strict_types=1);
 namespace skin;
 
 use Exception;
+use iriss\IrissCommand;
 use iriss\listener\CommandListener;
 use pocketmine\entity\Entity;
 use pocketmine\entity\EntityDataHelper;
@@ -96,7 +97,7 @@ class Main extends PluginBase {
 
 		$this->getServer()->getPluginManager()->registerEvents(new PlayerJoinListener(), $this);
 		$this->getServer()->getPluginManager()->registerEvents(new BlockPlaceListener(), $this);
-        new CommandListener($this);
+        IrissCommand::register($this);
 
 		$this->getLogger()->info("§aHeader-Skin plugin activé avec succès !");
 	}

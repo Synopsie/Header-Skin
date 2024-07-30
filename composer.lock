@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Synopsie/Iriss-Command.git",
-                "reference": "1b2a0e0d62051cda4852ed9693cfe134c08e76b6"
+                "reference": "7fcdf964309cd11db66b515b23f9cb193e832936"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Synopsie/Iriss-Command/zipball/1b2a0e0d62051cda4852ed9693cfe134c08e76b6",
-                "reference": "1b2a0e0d62051cda4852ed9693cfe134c08e76b6",
+                "url": "https://api.github.com/repos/Synopsie/Iriss-Command/zipball/7fcdf964309cd11db66b515b23f9cb193e832936",
+                "reference": "7fcdf964309cd11db66b515b23f9cb193e832936",
                 "shasum": ""
             },
             "require": {
@@ -29,6 +29,12 @@
             },
             "default-branch": true,
             "type": "library",
+            "extra": {
+                "virion": {
+                    "spec": "3.0",
+                    "namespace-root": "iriss"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "iriss\\": "src/"
@@ -47,9 +53,9 @@
             "description": "API permettant de simplifier l'utilisation des commandes et d'avoir une autocompletion",
             "support": {
                 "issues": "https://github.com/Synopsie/Iriss-Command/issues",
-                "source": "https://github.com/Synopsie/Iriss-Command/tree/stable"
+                "source": "https://github.com/Synopsie/Iriss-Command/tree/v1.1.0"
             },
-            "time": "2024-07-30T12:28:26+00:00"
+            "time": "2024-07-30T14:27:45+00:00"
         }
     ],
     "packages-dev": [
