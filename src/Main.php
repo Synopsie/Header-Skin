@@ -64,14 +64,8 @@ class Main extends PluginBase {
 		$config = $this->getConfig();
 		require $this->getFile() . 'vendor/autoload.php';
 
-		$groups = match($config->getNested('command.permission.default')) {
-			'console' => DefaultPermissions::ROOT_CONSOLE,
-			'op'      => DefaultPermissions::ROOT_OPERATOR,
-			default   => DefaultPermissions::ROOT_USER
-		};
-
 		$permissionManager = new PermissionManager();
-		$permissionManager->registerPermission($config->getNested('command.permission.name'), 'synopsie.header-skin', $groups);
+		$permissionManager->registerPermission($config->getNested('command.permission.name'), 'synopsie.header-skin', $permissionManager->getType($config->getNested('command.permission.default')));
 
 		EntityFactory::getInstance()->register(HeadEntity::class, function (World $world, CompoundTag $nbt) : Entity {
 			return new HeadEntity(EntityDataHelper::parseLocation($nbt, $world), Human::parseSkinNBT($nbt), $nbt);

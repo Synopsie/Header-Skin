@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36cce1faf383484117ea4568239c671f",
+    "content-hash": "09ac15bb0306f4384530ff22a389d231",
     "packages": [
         {
             "name": "synopsie/iriss-command",
-            "version": "dev-stable",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Synopsie/Iriss-Command.git",
-                "reference": "7fcdf964309cd11db66b515b23f9cb193e832936"
+                "reference": "d106a7e66d9b8a1e0e6ec53aef940378c2a82ac5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Synopsie/Iriss-Command/zipball/7fcdf964309cd11db66b515b23f9cb193e832936",
-                "reference": "7fcdf964309cd11db66b515b23f9cb193e832936",
+                "url": "https://api.github.com/repos/Synopsie/Iriss-Command/zipball/d106a7e66d9b8a1e0e6ec53aef940378c2a82ac5",
+                "reference": "d106a7e66d9b8a1e0e6ec53aef940378c2a82ac5",
                 "shasum": ""
             },
             "require": {
@@ -27,7 +27,6 @@
                 "friendsofphp/php-cs-fixer": "^3.60",
                 "pocketmine/pocketmine-mp": "^5.17"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "virion": {
@@ -53,22 +52,22 @@
             "description": "API permettant de simplifier l'utilisation des commandes et d'avoir une autocompletion",
             "support": {
                 "issues": "https://github.com/Synopsie/Iriss-Command/issues",
-                "source": "https://github.com/Synopsie/Iriss-Command/tree/v1.1.0"
+                "source": "https://github.com/Synopsie/Iriss-Command/tree/v1.1.1"
             },
-            "time": "2024-07-30T14:27:45+00:00"
+            "time": "2024-07-30T20:49:13+00:00"
         },
         {
             "name": "synopsie/olymp-permission",
-            "version": "dev-stable",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Synopsie/Olymp-Permisison.git",
-                "reference": "592de6736adb53310c36b13d859c364f76b3aca5"
+                "reference": "dadc0552160c190c09a5934cd0fd8a2c917d5e7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Synopsie/Olymp-Permisison/zipball/592de6736adb53310c36b13d859c364f76b3aca5",
-                "reference": "592de6736adb53310c36b13d859c364f76b3aca5",
+                "url": "https://api.github.com/repos/Synopsie/Olymp-Permisison/zipball/dadc0552160c190c09a5934cd0fd8a2c917d5e7c",
+                "reference": "dadc0552160c190c09a5934cd0fd8a2c917d5e7c",
                 "shasum": ""
             },
             "require": {
@@ -78,7 +77,6 @@
                 "friendsofphp/php-cs-fixer": "^3.60",
                 "pocketmine/pocketmine-mp": "^5.17"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -98,9 +96,9 @@
             "description": "API allowing to save permissions in a simplified way, without going through the plugin.yml or registering classes.",
             "support": {
                 "issues": "https://github.com/Synopsie/Olymp-Permisison/issues",
-                "source": "https://github.com/Synopsie/Olymp-Permisison/tree/dev"
+                "source": "https://github.com/Synopsie/Olymp-Permisison/tree/v1.0.1"
             },
-            "time": "2024-07-30T20:01:22+00:00"
+            "time": "2024-07-30T20:42:25+00:00"
         }
     ],
     "packages-dev": [
@@ -3654,10 +3652,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "synopsie/iriss-command": 20,
-        "synopsie/olymp-permission": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
