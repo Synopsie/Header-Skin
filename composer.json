@@ -4,13 +4,12 @@
     "type": "project",
     "require": {
         "php": "^8.1",
-        "synopsie/iriss-command": "^1.0",
         "ext-gd": "*",
-        "ext-exif": "*"
+        "synopsie/iriss-command": "dev-stable"
     },
     "require-dev": {
-        "pocketmine/pocketmine-mp": "^5.17",
-        "friendsofphp/php-cs-fixer": "^3.60"
+        "friendsofphp/php-cs-fixer": "^3.60",
+        "pocketmine/pocketmine-mp": "^5.17"
     },
     "license": "MIT",
     "autoload": {

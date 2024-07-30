@@ -22,6 +22,7 @@ declare(strict_types=1);
 namespace skin;
 
 use Exception;
+use iriss\listener\CommandListener;
 use pocketmine\entity\Entity;
 use pocketmine\entity\EntityDataHelper;
 use pocketmine\entity\EntityFactory;
@@ -30,21 +31,21 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\permission\DefaultPermissions;
 use pocketmine\permission\Permission;
 use pocketmine\plugin\PluginBase;
-use pocketmine\thread\ThreadManager;
-use pocketmine\thread\ThreadSafeClassLoader;
 use pocketmine\utils\SingletonTrait;
 use pocketmine\world\World;
 use skin\command\GiveHeadCommand;
 use skin\entity\HeadEntity;
 use skin\listener\BlockPlaceListener;
 use skin\listener\PlayerJoinListener;
+use skin\utils\ComposerLoader;
+
 use function file_exists;
 use function mkdir;
 
 class Main extends PluginBase {
 	use SingletonTrait;
 
-	protected function onLoad() : void {
+    protected function onLoad() : void {
 		$this->getLogger()->info("§6Chargement du Header-Skin plugin...");
 
 		self::setInstance($this);
@@ -72,16 +73,10 @@ class Main extends PluginBase {
 	 * @throws Exception
 	 */
 	protected function onEnable() : void {
-
 		$config = $this->getConfig();
 
-        $classLoader = new ThreadSafeClassLoader();
-        $classLoader->addPath('', 'vendor/synopsie/iriss-command/');
-        foreach (ThreadManager::getInstance()->getAll() as $thread) {
-            $thread->setClassLoaders([
-                $classLoader
-            ]);
-        }
+        ComposerLoader::init($this->getFile(), $this->getServer()->getLoader());
+        ComposerLoader::loadRepositoryAndDependencies($this->getFile());
 
 		$permission = new Permission($config->getNested('permission.name', 'givehead.use'));
 		DefaultPermissions::registerPermission($permission, [$this->type($config->getNested('permission.default', 'everyone'))]);
@@ -100,7 +95,9 @@ class Main extends PluginBase {
 
 		$this->getServer()->getPluginManager()->registerEvents(new PlayerJoinListener(), $this);
 		$this->getServer()->getPluginManager()->registerEvents(new BlockPlaceListener(), $this);
+        new CommandListener($this);
 
 		$this->getLogger()->info("§aHeader-Skin plugin activé avec succès !");
 	}
+
 }
