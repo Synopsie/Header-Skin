@@ -13,7 +13,7 @@
  *
  * @author Synopsie
  * @link https://github.com/Synopsie
- * @version 2.0.2
+ * @version 2.0.3
  *
  */
 
@@ -29,7 +29,6 @@ use pocketmine\entity\EntityDataHelper;
 use pocketmine\entity\EntityFactory;
 use pocketmine\entity\Human;
 use pocketmine\nbt\tag\CompoundTag;
-use pocketmine\permission\DefaultPermissions;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\SingletonTrait;
 use pocketmine\world\World;
@@ -65,9 +64,9 @@ class Main extends PluginBase {
 		$config = $this->getConfig();
 		require $this->getFile() . 'vendor/autoload.php';
 
-        Updater::checkUpdate('Header-Skin', $this->getDescription()->getVersion(), 'Synopsie', 'Header-Skin');
+		Updater::checkUpdate('Header-Skin', $this->getDescription()->getVersion(), 'Synopsie', 'Header-Skin');
 
-        $permissionManager = new PermissionManager();
+		$permissionManager = new PermissionManager();
 		$permissionManager->registerPermission($config->getNested('command.permission.name'), 'synopsie.header-skin', $permissionManager->getType($config->getNested('command.permission.default')));
 
 		EntityFactory::getInstance()->register(HeadEntity::class, function (World $world, CompoundTag $nbt) : Entity {
