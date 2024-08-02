@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "09ac15bb0306f4384530ff22a389d231",
+    "content-hash": "fe087b39a0dac7ea4d04722b6b864d24",
     "packages": [
         {
             "name": "synopsie/iriss-command",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Synopsie/Iriss-Command.git",
-                "reference": "d106a7e66d9b8a1e0e6ec53aef940378c2a82ac5"
+                "reference": "63befe7c8375197288c37422bf4ba955ce73c1f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Synopsie/Iriss-Command/zipball/d106a7e66d9b8a1e0e6ec53aef940378c2a82ac5",
-                "reference": "d106a7e66d9b8a1e0e6ec53aef940378c2a82ac5",
+                "url": "https://api.github.com/repos/Synopsie/Iriss-Command/zipball/63befe7c8375197288c37422bf4ba955ce73c1f5",
+                "reference": "63befe7c8375197288c37422bf4ba955ce73c1f5",
                 "shasum": ""
             },
             "require": {
@@ -52,9 +52,9 @@
             "description": "API permettant de simplifier l'utilisation des commandes et d'avoir une autocompletion",
             "support": {
                 "issues": "https://github.com/Synopsie/Iriss-Command/issues",
-                "source": "https://github.com/Synopsie/Iriss-Command/tree/v1.1.1"
+                "source": "https://github.com/Synopsie/Iriss-Command/tree/v1.1.2"
             },
-            "time": "2024-07-30T20:49:13+00:00"
+            "time": "2024-08-01T11:25:52+00:00"
         },
         {
             "name": "synopsie/olymp-permission",
@@ -99,6 +99,50 @@
                 "source": "https://github.com/Synopsie/Olymp-Permisison/tree/v1.0.1"
             },
             "time": "2024-07-30T20:42:25+00:00"
+        },
+        {
+            "name": "synopsie/sofia-updater",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Synopsie/Sofia-Updater.git",
+                "reference": "96c0833194110413aeb77a739f91dd70fc634788"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Synopsie/Sofia-Updater/zipball/96c0833194110413aeb77a739f91dd70fc634788",
+                "reference": "96c0833194110413aeb77a739f91dd70fc634788",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.61",
+                "pocketmine/pocketmine-mp": "^5.17"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "sofia\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dumont-Julien",
+                    "email": "dumontj357@gmail.com"
+                }
+            ],
+            "description": "Sofia-Updater est une api permettant à un plugin de vérifier si une nouvelle release est disponible",
+            "support": {
+                "issues": "https://github.com/Synopsie/Sofia-Updater/issues",
+                "source": "https://github.com/Synopsie/Sofia-Updater/tree/v1.0.0"
+            },
+            "time": "2024-08-02T08:38:42+00:00"
         }
     ],
     "packages-dev": [
@@ -621,16 +665,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.60.0",
+            "version": "v3.61.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "e595e4e070d17c5d42ed8c4206f630fcc5f401a4"
+                "reference": "94a87189f55814e6cabca2d9a33b06de384a2ab8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/e595e4e070d17c5d42ed8c4206f630fcc5f401a4",
-                "reference": "e595e4e070d17c5d42ed8c4206f630fcc5f401a4",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/94a87189f55814e6cabca2d9a33b06de384a2ab8",
+                "reference": "94a87189f55814e6cabca2d9a33b06de384a2ab8",
                 "shasum": ""
             },
             "require": {
@@ -712,7 +756,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.60.0"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.61.1"
             },
             "funding": [
                 {
@@ -720,7 +764,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-25T09:26:51+00:00"
+            "time": "2024-07-31T14:33:15+00:00"
         },
         {
             "name": "pocketmine/bedrock-block-upgrade-schema",

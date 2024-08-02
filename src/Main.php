@@ -37,6 +37,7 @@ use skin\command\GiveHeadCommand;
 use skin\entity\HeadEntity;
 use skin\listener\BlockPlaceListener;
 use skin\listener\PlayerJoinListener;
+use sofia\Updater;
 
 use function file_exists;
 use function mkdir;
@@ -64,7 +65,9 @@ class Main extends PluginBase {
 		$config = $this->getConfig();
 		require $this->getFile() . 'vendor/autoload.php';
 
-		$permissionManager = new PermissionManager();
+        Updater::checkUpdate('Header-Skin', $this->getDescription()->getVersion(), 'Synopsie', 'Header-Skin');
+
+        $permissionManager = new PermissionManager();
 		$permissionManager->registerPermission($config->getNested('command.permission.name'), 'synopsie.header-skin', $permissionManager->getType($config->getNested('command.permission.default')));
 
 		EntityFactory::getInstance()->register(HeadEntity::class, function (World $world, CompoundTag $nbt) : Entity {
