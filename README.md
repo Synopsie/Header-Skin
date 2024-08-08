@@ -37,4 +37,4 @@ Licensed under MIT. See [LICENSE](LICENSE) for details.
 
 ---
 
-![Feed](feed.png)
+![Header-Skin](header-skin.png)
