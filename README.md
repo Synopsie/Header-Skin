@@ -1,59 +1,40 @@
-# SkinSave Library
+# [Header-Skin](https://github.com/Synopsie/Header-Skin) Plugin 👥
 
-La bibliothèque `SkinSave` est une solution PHP conçue pour faciliter la manipulation et la sauvegarde des skins de personnages pour Minecraft. Elle permet de valider, redimensionner et sauvegarder les données de skin sous forme d'images.
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Synopsie/Header-Skin)
 
-## Fonctionnalités
+## Features 🛠️
 
-- Validation de la taille des skins.
-- Conversion des données de skin en images.
-- Redimensionnement des images de skin.
-- Sauvegarde des têtes de personnages à partir des données de skin.
-- Obtenir en jeu la tête du joeuur 
+- **Command**: Use `/givehead` to give player heads.
+- **Configurable**: Various customization options.
+- **Permissions**: Control command access.
+- **Messages**: Inform players of actions.
 
-## Installation
+## Configuration 📝
 
-Vous mettez le fichier `SkinSave.php` dans votre projet et pensez à changer le namespace si besoin.
+```yaml
+# Header-Skin Config
 
-## Utilisation
+command:
+  name: givehead
+  description: Permet de vous donner la tête d'un joueur
+  usage: /givehead <player> [target] [count]
+  alias:
+    - giveh
+  permission:
+    name: givehead.use
+    default: op # console -> seulement console | op -> seulement les op | user -> tous le monde
 
-### Valider la taille d'un skin
+head.name: Tête de §e%player%
 
-Pour valider la taille d'un skin, utilisez la méthode `validateSize` :
-
-```php
-$isValid = \skin\skins\SkinSave::validateSize($size);
+use.command.in.game: Utilisez cette commande en jeu
+player.skin.not.found: §cLe skin du joueur n'a pas été trouvé, vérifiez qu'il a bien été enregistré.
+inventory.full: §cVotre inventaire est plein.
 ```
 
-### Enregistrer un skin en config.
+## License 📜
 
-Pour enregistrer un skin en config, utilisez la méthode `skinDataToImage` :
+Licensed under MIT. See [LICENSE](LICENSE) for details.
 
-```php
-$image = \skin\skins\SkinSave::skinDataToImage($skinData);
-```
+---
 
-### Redimensionner une image de skin
-
-Pour redimensionner une image de skin, utilisez la méthode `resize_image` :
-
-```php
-imagepng(SkinSave::skinDataToImage($player->getSkin()->getSkinData()), Main::getInstance()->getDataFolder() . "skins/" . $player->getName() . ".png");
-```
-
-### Sauvegarder la tête d'un personnage
-
-Pour sauvegarder la tête d'un personnage à partir des données de skin, utilisez la méthode `savePlayerHead` :
-
-```php
-\skin\skins\SkinSave::savePlayerHead($playerName, $skinData, $path);
-```
-
-## Contribution
-
-Les contributions à la bibliothèque sont les bienvenues. Veuillez suivre les conventions de code standard PHP et soumettre vos pull requests pour examen.
-
-## Licence
-
-Cette bibliothèque est distribuée sous la licence MIT. Voir le fichier `LICENSE` pour plus d'informations.
-
-![Header-Skin](header-skin.png)
+![Feed](feed.png)

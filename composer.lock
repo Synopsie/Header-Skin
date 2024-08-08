@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Synopsie/Iriss-Command.git",
-                "reference": "63befe7c8375197288c37422bf4ba955ce73c1f5"
+                "reference": "2d40324fcbdba76784771ab5cfa4a64c537b1078"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Synopsie/Iriss-Command/zipball/63befe7c8375197288c37422bf4ba955ce73c1f5",
-                "reference": "63befe7c8375197288c37422bf4ba955ce73c1f5",
+                "url": "https://api.github.com/repos/Synopsie/Iriss-Command/zipball/2d40324fcbdba76784771ab5cfa4a64c537b1078",
+                "reference": "2d40324fcbdba76784771ab5cfa4a64c537b1078",
                 "shasum": ""
             },
             "require": {
@@ -54,7 +54,7 @@
                 "issues": "https://github.com/Synopsie/Iriss-Command/issues",
                 "source": "https://github.com/Synopsie/Iriss-Command/tree/v1.1.2"
             },
-            "time": "2024-08-01T11:25:52+00:00"
+            "time": "2024-08-01T12:44:25+00:00"
         },
         {
             "name": "synopsie/olymp-permission",

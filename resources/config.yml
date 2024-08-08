@@ -8,7 +8,7 @@ command:
     - giveh
   permission:
     name: givehead.use
-    default: op # console -> seulement console | op -> seulement les op | user -> tous le monde
+    default: operator # console -> seulement console | operator -> seulement les op | user -> tous le monde
 
 head.name: Tête de §e%player%
 
