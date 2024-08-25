@@ -55,7 +55,7 @@ class Main extends PluginBase {
 			@mkdir($this->getDataFolder() . 'skins/heads');
 		}
 
-		$this->saveResource('config.yml', true);
+		$this->saveResource('config.yml');
 	}
 
 	/**
