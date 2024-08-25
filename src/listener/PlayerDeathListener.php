@@ -21,17 +21,29 @@ declare(strict_types=1);
 
 namespace skin\listener;
 
+use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerDeathEvent;
+use pocketmine\player\Player;
 use skin\Main;
-use skin\skins\SkinSave;
-use function imagepng;
+use skin\utils\Utils;
+use function in_array;
 
-class PlayerJoinListener implements Listener {
-	public function onPlayerJoin(PlayerJoinEvent $event) : void {
+class PlayerDeathListener implements Listener {
+	public function onPlayerDeath(PlayerDeathEvent $event) : void {
 		$player = $event->getPlayer();
-		imagepng(SkinSave::skinDataToImage($player->getSkin()->getSkinData()), Main::getInstance()->getDataFolder() . "skins/" . $player->getName() . ".png");
-		SkinSave::savePlayerHead($player->getName(), $player->getSkin()->getSkinData(), Main::getInstance()->getDataFolder() . "skins/heads/");
-	}
+		$cause  = $player->getLastDamageCause();
 
+		if($cause instanceof EntityDamageByEntityEvent) {
+			$damager = $cause->getDamager();
+			if($damager instanceof Player) {
+				$config = Main::getInstance()->getConfig();
+				if(!in_array($player->getName(), $config->get('blacklist', []), true)) {
+					if($damager->getInventory()->canAddItem(Utils::getHeadItem($player->getSkin()))) {
+						$damager->getInventory()->addItem(Utils::getHeadItem($player->getSkin(), $player->getName()));
+					}
+				}
+			}
+		}
+	}
 }

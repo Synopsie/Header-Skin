@@ -22,9 +22,14 @@ command:
     - giveh
   permission:
     name: givehead.use
-    default: op # console -> seulement console | op -> seulement les op | user -> tous le monde
+    default: operator # console -> seulement console | operator -> seulement les op | user -> tous le monde
 
 head.name: Tête de §e%player%
+
+# Permet de donner à la à la mort du joueur
+drop.head: false
+blacklist: # Permet d'empêcher le fait qu'une tête tombe à la mort d'un joueur si le drop.head est activé.
+  - Steve
 
 use.command.in.game: Utilisez cette commande en jeu
 player.skin.not.found: §cLe skin du joueur n'a pas été trouvé, vérifiez qu'il a bien été enregistré.

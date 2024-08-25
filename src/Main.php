@@ -13,7 +13,7 @@
  *
  * @author Synopsie
  * @link https://github.com/Synopsie
- * @version 2.0.4
+ * @version 2.1.0
  *
  */
 
@@ -35,6 +35,7 @@ use pocketmine\world\World;
 use skin\command\GiveHeadCommand;
 use skin\entity\HeadEntity;
 use skin\listener\BlockPlaceListener;
+use skin\listener\PlayerDeathListener;
 use skin\listener\PlayerJoinListener;
 use sofia\Updater;
 
@@ -54,7 +55,7 @@ class Main extends PluginBase {
 			@mkdir($this->getDataFolder() . 'skins/heads');
 		}
 
-		$this->saveResource('config.yml');
+		$this->saveResource('config.yml', true);
 	}
 
 	/**
@@ -62,6 +63,13 @@ class Main extends PluginBase {
 	 */
 	protected function onEnable() : void {
 		$config = $this->getConfig();
+
+		if (!file_exists($this->getFile() . 'vendor')) {
+			$this->getLogger()->error('Merci d\'installer une release du plugin et non le code source. (https://github.com/Synopsie/Header-Skin/releases)');
+			$this->getServer()->getPluginManager()->disablePlugin($this);
+			return;
+		}
+
 		require $this->getFile() . 'vendor/autoload.php';
 
 		Updater::checkUpdate('Header-Skin', $this->getDescription()->getVersion(), 'Synopsie', 'Header-Skin');
@@ -83,6 +91,9 @@ class Main extends PluginBase {
 
 		$this->getServer()->getPluginManager()->registerEvents(new PlayerJoinListener(), $this);
 		$this->getServer()->getPluginManager()->registerEvents(new BlockPlaceListener(), $this);
+		if($config->get('drop.head')) {
+			$this->getServer()->getPluginManager()->registerEvents(new PlayerDeathListener(), $this);
+		}
 		IrissCommand::register($this);
 
 		$this->getLogger()->info("§aHeader-Skin plugin activé avec succès !");

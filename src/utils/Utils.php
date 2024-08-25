@@ -13,7 +13,7 @@
  *
  * @author Synopsie
  * @link https://github.com/Synopsie
- * @version 2.0.4
+ * @version 2.1.0
  *
  */
 
@@ -42,10 +42,10 @@ class Utils {
 		$item = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PLAYER())->asItem();
 		$tag  = $item->getCustomBlockData() ?? new CompoundTag();
 		$tag->setTag('skin', $skin);
-		$tag->setString('player', $name);
+		$tag->setString('player', $name ?? '');
 		$item->setCustomBlockData($tag);
 		$item->setCount($count);
-		$item->setCustomName(str_replace('%player%', $name ?? $skin->getString('name', 'player'), Main::getInstance()->getConfig()->get('head.name')));
+		$item->setCustomName(str_replace('%player%', $name ?? '', Main::getInstance()->getConfig()->get('head.name')));
 		return $item;
 	}
 
