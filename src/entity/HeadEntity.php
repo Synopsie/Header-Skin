@@ -33,6 +33,7 @@ use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\player\Player;
+use skin\Main;
 use skin\utils\Utils;
 
 class HeadEntity extends Human {
@@ -96,4 +97,11 @@ class HeadEntity extends Human {
 		$nbt->setString('player', $this->player);
 		return $nbt;
 	}
+
+    public function onCollideWithPlayer(Player $player) : void {
+        if(Main::getInstance()->getConfig()->get('enable.collision')) {
+            $player->knockBack($player->getPosition()->getX() - $this->getPosition()->getX(), $player->getPosition()->getZ() - $this->getPosition()->getZ(), Main::getInstance()->getConfig()->get('motion.force', 0.1));
+        }
+
+    }
 }
