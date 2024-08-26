@@ -13,7 +13,7 @@
  *
  * @author Synopsie
  * @link https://github.com/Synopsie
- * @version 2.1.0
+ * @version 2.2.0
  *
  */
 
@@ -98,10 +98,10 @@ class HeadEntity extends Human {
 		return $nbt;
 	}
 
-    public function onCollideWithPlayer(Player $player) : void {
-        if(Main::getInstance()->getConfig()->get('enable.collision')) {
-            $player->knockBack($player->getPosition()->getX() - $this->getPosition()->getX(), $player->getPosition()->getZ() - $this->getPosition()->getZ(), Main::getInstance()->getConfig()->get('motion.force', 0.1));
-        }
+	public function onCollideWithPlayer(Player $player) : void {
+		if(Main::getInstance()->getConfig()->get('enable.collision')) {
+			$player->knockBack($player->getPosition()->getX() - $this->getPosition()->getX(), $player->getPosition()->getZ() - $this->getPosition()->getZ(), Main::getInstance()->getConfig()->get('motion.force', 0.1));
+		}
 
-    }
+	}
 }

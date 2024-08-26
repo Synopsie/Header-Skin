@@ -1,5 +1,5 @@
 name: Header-Skin
-version: 2.1.0
+version: 2.2.0
 main: skin\Main
 src-namespace-prefix: skin
 api: 5.0.0
