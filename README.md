@@ -4,13 +4,21 @@
 
 ## Features 🛠️
 
-- **Command**: Use `/givehead` to give player heads.
-- **Configurable**: Various customization options.
-- **Permissions**: Control command access.
-- **Messages**: Inform players of actions.
+---
+- Configurable: Commande, Config, Messages, etc...
+- Mise à jour: Plugin mise à jour régulièrement.
+
+## Commande 📜
+
+---
+
+| Commande | Description | Usage | Alias | Permission |
+|----------|-------------|-------|-------|------------|
+| /givehead | Permet de vous donner la tête d'un joueur | /givehead <player> [target] [count] | giveh | givehead.use |
 
 ## Configuration 📝
 
+---
 ```yaml
 # Header-Skin Config
 
@@ -39,10 +47,9 @@ player.skin.not.found: §cLe skin du joueur n'a pas été trouvé, vérifiez qu'
 inventory.full: §cVotre inventaire est plein.
 ```
 
-## License 📜
-
-Licensed under MIT. See [LICENSE](LICENSE) for details.
+## Support 📜
 
 ---
+Pour des questions, ou une demande d'aide, rendez-vous sur notre [discord](https://discorD.gg/JkpT7BJPXR)
 
 ![Header-Skin](header-skin.png)
